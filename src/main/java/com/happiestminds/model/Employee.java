@@ -14,7 +14,6 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String city;
-
     private double salary;
 
     public String getFirstName() {
@@ -56,6 +55,4 @@ public class Employee {
     public void setSalary(Double salary) {
         this.salary = salary;
     }
-
-
 }

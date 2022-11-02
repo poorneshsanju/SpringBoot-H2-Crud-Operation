@@ -8,21 +8,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/*
+contains all mapping annotation
+handles all the CRUD operation methods
+ */
+
 @RestController
 public class EmployeeController {
+
+    //object injection using autowired annotation
     @Autowired
     EmployeeService employeeService;
 
+
+    //to get all details employee
     @GetMapping("/employees")
     private List getAllEmployees(){
         return employeeService.getAllEmployees();
     }
 
+
+    //get employee details using id
     @GetMapping("/employees/{id}")
     private Employee getEmployeeById(@PathVariable("id") int id){
         return employeeService.getEmployeeById(id);
     }
 
+    //to add new employee details
     @PostMapping("/employees")
     private ResponseEntity createEmployee(@RequestBody Employee employee){
         try{
@@ -34,6 +46,7 @@ public class EmployeeController {
         return new ResponseEntity("New Employee created with id " + employee.getId(), HttpStatus.CREATED );
     }
 
+    //delete employee details using id
     @DeleteMapping("/employees/{id}")
     private ResponseEntity deleteById(@PathVariable("id")int id){
         try{
@@ -44,6 +57,7 @@ public class EmployeeController {
         return new ResponseEntity("Employee deleted with id:" + id, HttpStatus.OK);
     }
 
+    //to update or edit of existing employee details using employee id
     @PutMapping("/employees/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employeeDetails) {
         Employee updateEmployee = employeeService.getEmployeeById(id);
@@ -51,8 +65,8 @@ public class EmployeeController {
         updateEmployee.setFirstName(employeeDetails.getLastName());
         updateEmployee.setLastName(employeeDetails.getLastName());
         updateEmployee.setSalary(employeeDetails.getSalary());
-        //updateEmployee.setEmailId(employeeDetails.getEmailId());
         employeeService.saveOrUpdate(updateEmployee);
         return ResponseEntity.ok(updateEmployee);
     }
+
 }
