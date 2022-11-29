@@ -3,7 +3,9 @@ package com.happiestminds.model;
 
 import javax.persistence.*;
 
-/* to tell jpa that this will mapped to database */
+/*
+to tell jpa that this will mapped to database
+*/
 @Entity
 @Table
 public class Employee {
@@ -35,7 +37,6 @@ public class Employee {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
